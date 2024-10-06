@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit License</title>
+</head>
+<body>
+    <h1>Edit License</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+    <a href="{% url 'manage_licenses' form.instance.license_type %}">Back to Manage Licenses</a>
+</body>
+</html>

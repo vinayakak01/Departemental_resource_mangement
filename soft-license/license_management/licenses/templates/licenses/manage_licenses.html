@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage {{ category }}</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 8px;
+        }
+        .odd {
+            background-color: #f2f2f2;
+        }
+        .even {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manage {{ category }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add/Update License</button>
+    </form>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Version</th>
+            <th>Type</th>
+            <th>Date Purchased</th>
+            <th>Valid Upto</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        {% for license in licenses %}
+        <tr class="{{ forloop.counter0|divisibleby:2|yesno:'even,odd' }}">
+            <td>{{ license.name }}</td>
+            <td>{{ license.version }}</td>
+            <td>{{ license.license_type }}</td>
+            <td>{{ license.date_purchased }}</td>
+            <td>{{ license.valid_upto }}</td>
+            <td>{{ license.price }}</td>
+            <td>
+                <a href="{% url 'edit_license' license.id %}">Edit</a>
+                <a href="{% url 'delete_license' license.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage IDEs</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="header-container">
+        <!-- <img src="{% static 'logo.jpg' %}" alt="BIET Logo" class="logo"> -->
+        <h1 class="department-header">Manage Integrated Development Environments</h1>
+    </div>
+    <div class="main-container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Version</th>
+                    <th>Type</th>
+                    <th>Date Purchased</th>
+                    <th>Valid Upto</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ide in ides %}
+                <tr class="{% cycle 'odd' 'even' %}">
+                    <td>{{ ide.name }}</td>
+                    <td>{{ ide.version }}</td>
+                    <td>{{ ide.license_type }}</td>
+                    <td>{{ ide.date_purchased }}</td>
+                    <td>{{ ide.valid_upto }}</td>
+                    <td>{{ ide.price }}</td>
+                    <td class="actions">
+                        <a href="{% url 'edit_ide' ide.id %}">Edit</a>
+                        <a href="{% url 'delete_ide' ide.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'home' %}" class="big-button">Back to Home</a>
+    </div>
+    <footer>
+        <a href="https://www.bietdvg.edu/">Copyright @ BIET CS</a>
+    </footer>
+</body>
+</html>

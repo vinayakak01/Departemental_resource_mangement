@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Softwares</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="header-container">
+        <!-- <img src="{% static 'logo.jpg' %}" alt="BIET Logo" class="logo"> -->
+        <h1 class="department-header">Manage Softwares</h1>
+    </div>
+    <div class="main-container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Version</th>
+                    <th>Type</th>
+                    <th>Date Purchased</th>
+                    <th>Valid Upto</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for software in softwares %}
+                <tr class="{% cycle 'odd' 'even' %}">
+                    <td>{{ software.name }}</td>
+                    <td>{{ software.version }}</td>
+                    <td>{{ software.license_type }}</td>
+                    <td>{{ software.date_purchased }}</td>
+                    <td>{{ software.valid_upto }}</td>
+                    <td>{{ software.price }}</td>
+                    <td class="actions">
+                        <a href="{% url 'edit_software' software.id %}">Edit</a>
+                        <a href="{% url 'delete_software' software.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'home' %}" class="big-button">Back to Home</a>
+    </div>
+    <footer>
+        <a href="https://www.bietdvg.edu/">Copyright @ BIET CS</a>
+    </footer>
+</body>
+</html>

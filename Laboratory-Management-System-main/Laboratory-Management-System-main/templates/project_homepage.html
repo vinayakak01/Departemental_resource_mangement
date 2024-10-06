@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project Homepage</title>
+    <meta charset="UTF-8">
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(150deg, #f0f0f0 0%, #dafeba 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            color: black;
+            margin-bottom: 20px;
+            border: 10px solid black;
+            padding: 30px;
+            padding-left: 300px;
+            padding-right: 300px;
+            background: linear-gradient(135deg, #007bff 0%, #3fd5a0 100%);
+            width: fit-content;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 120px); /* Adjusted height considering header height and margin */
+            width: 100%;
+        }
+
+        #LT {
+            background: linear-gradient(135deg, #007bff 0%, #3fd5a0 100%);
+            color: white;
+            padding: 20px 40px;
+            font-size: 24px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 220px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Department Lab Management</h1>
+    </header>
+
+    <div class="container">
+        <a href="{% url 'homepage' %}">
+            <div id="LT">
+                C S Department Laboratory
+            </div>
+        </a>
+    </div>
+</body>
+
+</html>

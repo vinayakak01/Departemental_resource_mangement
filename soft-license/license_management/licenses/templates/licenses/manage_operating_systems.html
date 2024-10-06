@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Operating Systems</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="header-container">
+        <!-- <img src="{% static 'logo.jpg' %}" alt="BIET Logo" class="logo"> -->
+        <h1 class="department-header">Manage Operating Systems</h1>
+    </div>
+    <div class="main-container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Version</th>
+                    <th>Type</th>
+                    <th>Date Purchased</th>
+                    <th>Valid Upto</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for operating_system in operating_systems %}
+                <tr class="{% cycle 'odd' 'even' %}">
+                    <td>{{ operating_system.name }}</td>
+                    <td>{{ operating_system.version }}</td>
+                    <td>{{ operating_system.license_type }}</td>
+                    <td>{{ operating_system.date_purchased }}</td>
+                    <td>{{ operating_system.valid_upto }}</td>
+                    <td>{{ operating_system.price }}</td>
+                    <td class="actions">
+                        <a href="{% url 'edit_operating_system' operating_system.id %}">Edit</a>
+                        <a href="{% url 'delete_operating_system' operating_system.id %}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'home' %}" class="big-button">Back to Home</a>
+    </div>
+    <footer>
+        <a href="https://www.bietdvg.edu/">Copyright @ BIET CS</a>
+    </footer>
+</body>
+</html>

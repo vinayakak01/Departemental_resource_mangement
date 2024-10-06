@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Resources Management System</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <img src="{% static 'logo.jpg' %}" alt="BIET Logo" class="logo">
+            <h1 class="department-header">Computer Science & Engineering Software Management System</h1>
+        </div>
+    </header>
+    <main>
+        <div>
+            <section class="button-container">
+                <a href="{% url 'manage_operating_systems' %}" class="big-button">Operating Systems</a>
+<a href="{% url 'manage_ides' %}" class="big-button">Integrated Development Environment</a>
+<a href="{% url 'manage_softwares' %}" class="big-button">Softwares</a>
+
+            </section>
+        </div>
+    </main>
+    <footer>
+        <a href="https://www.bietdvg.edu/">copyright@bietcs</a>
+     </footer>
+</body>
+</html>
